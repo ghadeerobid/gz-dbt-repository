@@ -2,7 +2,6 @@ version: 2
 
 sources:
   - name: raw
-    database: hardy-binder-414010
     schema: gz_raw_data
     tables:
       - name: raw_gz_sales
