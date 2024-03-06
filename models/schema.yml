@@ -54,3 +54,113 @@ sources:
         - name: ship_cost
           description: The total shipping cost, which may include additional charges beyond the shipping fee.
 
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: "The raw_gz_adwords table holds raw data concerning AdWords metrics, offering a detailed snapshot of advertising activities on the AdWords platform. It encompasses data such as the date of data entry, the paid advertising source, unique campaign identifiers, campaign names or identifiers, the cost of displaying ads, the number of impressions, and the count of user clicks. This raw dataset is essential for in-depth analysis and understanding the effectiveness of AdWords advertising campaigns."
+        columns:
+        - name: date_date
+          description: "Date of the recorded AdWords metrics."
+        - name: paid_source
+          description: "Paid advertising platform or source."
+
+        - name: campaign_key
+          description: "Unique identifier for advertising campaigns."
+
+        - name: camPGN_name
+          description: "Name or identifier of the advertising campaign."
+
+        - name: ads_cost
+          description: "Cost incurred for displaying ads during the specified time period."
+        - name: impression
+          description: "Number of times ads were displayed to users."
+
+        - name: click
+          description: "Number of times users clicked on the displayed ads."
+      - name: bing
+        identifier: raw_gz_bing
+        description: "This table contains raw data pertaining to Bing Ads metrics, offering detailed insights into advertising activities on the Bing platform. It encompasses information such as the date of data entry, the paid advertising source, unique campaign identifiers, campaign names or identifiers, the cost incurred for displaying ads, the number of impressions, and the count of user clicks on the ads. This raw dataset is fundamental for analyzing and understanding the performance of Bing advertising campaigns."
+        columns:
+        - name: date_date
+          description: "Date of the recorded Bing Ads metrics."
+
+        - name: paid_source
+          description: "Paid advertising platform or source."
+
+        - name: campaign_key
+          description: "Unique identifier for Bing advertising campaigns."
+
+        - name: camPGN_name
+          description: "Name or identifier of the Bing advertising campaign."
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: "The raw_gz_criteo table stores raw data related to Criteo Ads metrics, providing a comprehensive record of advertising activities on the Criteo platform. It includes essential information like the date of data entry, the paid advertising source, unique campaign identifiers, campaign names or identifiers, the cost incurred for displaying Criteo ads, the number of impressions, and the count of user clicks on the ads. This raw dataset serves as a foundational resource for analyzing and gaining insights into the performance of Criteo advertising campaigns."
+        columns:
+        - name: date_date
+          description: "Date of the recorded Criteo Ads metrics."
+
+        - name: paid_source
+          description: "Paid advertising platform or source for Criteo."
+
+        - name: campaign_key
+          description: "Unique identifier for Criteo advertising campaigns."
+
+        - name: camPGN_name
+          description: "Name or identifier of the Criteo advertising campaign."
+
+        - name: ads_cost
+          description: "Cost incurred for displaying Criteo ads during the specified time period."
+
+        - name: impression
+          description: "Number of times Criteo ads were displayed to users."
+
+        - name: click
+          description: "Number of times users clicked on the displayed Criteo ads."
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: "This table stores raw data related to Facebook Ads metrics, providing a comprehensive record of advertising activities on the Facebook platform. It includes information such as the date of the recorded metrics, the paid advertising source, unique identifiers for advertising campaigns, campaign names or identifiers, the cost incurred for displaying ads, the number of impressions, and the count of user clicks on the displayed ads. This raw data serves as a foundational dataset for analyzing and deriving insights into the performance of Facebook advertising campaigns."
+        columns:
+        - name: date_date
+          description: "Date of the recorded Facebook Ads metrics."
+
+        - name: paid_source
+          description: "Paid advertising platform or source for Facebook."
+
+        - name: campaign_key
+          description: "Unique identifier for Facebook advertising campaigns."
+
+        - name: camPGN_name
+          description: "Name or identifier of the Facebook advertising campaign."
+
+        - name: ads_cost
+          description: "Cost incurred for displaying Facebook ads during the specified time period."
+
+        - name: impression
+          description: "Number of times Facebook ads were displayed to users."
+
+        - name: click
+          description: "Number of times users clicked on the displayed Facebook ads."
+
+      - name: int_campaigns
+        description: data from all campaigns
+        tests:
+          - unique:
+              column_name: "(campaign_key || '-' || date_date)"
+          - not_null:
+              column_name:
+                - paid_source
+                - campaign_name
+      - name: finance_campaigns_day
+        description: global kpi
+        columns:
+          - name: ads_margin
+            description: operational_margin - ads_cost
+          - name: average_basket
+            description: average basket cost for each day 
+        tests:
+          - not_null:
+              column_name:
+                  - ads_margin
+                  - average_basket 
+        
+
+  
